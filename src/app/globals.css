@@ -2,32 +2,166 @@
 @tailwind components;
 @tailwind utilities;
 
-:root {
-  --foreground-rgb: 0, 0, 0;
-  --background-start-rgb: 214, 219, 220;
-  --background-end-rgb: 255, 255, 255;
-}
-
-@media (prefers-color-scheme: dark) {
+@layer base {
   :root {
-    --foreground-rgb: 255, 255, 255;
-    --background-start-rgb: 0, 0, 0;
-    --background-end-rgb: 0, 0, 0;
+    --background: 0 0% 100%;
+    --foreground: 0 0% 3.9%;
+
+    --card: 0 0% 100%;
+    --card-foreground: 0 0% 3.9%;
+
+    --popover: 0 0% 100%;
+    --popover-foreground: 0 0% 3.9%;
+
+    --primary: 0 0% 9%;
+    --primary-foreground: 0 0% 98%;
+
+    --secondary: 0 0% 96.1%;
+    --secondary-foreground: 0 0% 9%;
+
+    --muted: 0 0% 96.1%;
+    --muted-foreground: 0 0% 45.1%;
+
+    --accent: 0 0% 96.1%;
+    --accent-foreground: 0 0% 9%;
+
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 0 0% 98%;
+
+    --border: 0 0% 89.8%;
+    --input: 0 0% 89.8%;
+    --ring: 0 0% 3.9%;
+
+    --radius: 0.5rem;
+  }
+
+  .dark {
+    --background: 0 0% 3.9%;
+    --foreground: 0 0% 98%;
+
+    --card: 0 0% 3.9%;
+    --card-foreground: 0 0% 98%;
+
+    --popover: 0 0% 3.9%;
+    --popover-foreground: 0 0% 98%;
+
+    --primary: 0 0% 98%;
+    --primary-foreground: 0 0% 9%;
+
+    --secondary: 0 0% 14.9%;
+    --secondary-foreground: 0 0% 98%;
+
+    --muted: 0 0% 14.9%;
+    --muted-foreground: 0 0% 63.9%;
+
+    --accent: 0 0% 14.9%;
+    --accent-foreground: 0 0% 98%;
+
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 0 0% 98%;
+
+    --border: 0 0% 14.9%;
+    --input: 0 0% 14.9%;
+    --ring: 0 0% 83.1%;
   }
 }
 
-body {
-  color: rgb(var(--foreground-rgb));
-  background: linear-gradient(
-      to bottom,
-      transparent,
-      rgb(var(--background-end-rgb))
-    )
-    rgb(var(--background-start-rgb));
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground;
+  }
 }
 
-@layer utilities {
-  .text-balance {
-    text-wrap: balance;
-  }
+.house-info {
+  --_br: 1rem;
+  display: grid;
+  gap: 1rem;
+  grid-template-columns: repeat(2, 1fr);
+  grid-template-rows: 0.7fr auto 0.4fr;
+  max-width: 25rem;
+  position: relative;
+}
+
+.house-image {
+  grid-row: 1 / 3;
+  grid-column: 1 / 3;
+  border-radius: var(--_br);
+  overflow: hidden;
+}
+
+.house-image::before,
+.house-image::after,
+.house-price::after {
+  --_size: var(--_br);
+  content: "";
+  position: absolute;
+  width: var(--_size);
+  aspect-ratio: 1;
+  background-image: radial-gradient(
+    circle at 100% 100%,
+    transparent var(--_size),
+    var(--_corner-color, #f5f5f5) calc(var(--_size) + 1px)
+  );
+  rotate: -90deg;
+}
+
+.house-image::before {
+  left: 0;
+  bottom: 0;
+  grid-column: 2;
+  grid-row: 2 / 3;
+}
+
+.house-image::after {
+  left: 0;
+  bottom: 0;
+  grid-column: 1;
+  grid-row: 1 / 2;
+  box-shadow: -1rem 0 0 #f5f5f5;
+}
+
+.house-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.house-price {
+  display: grid;
+  padding: 1rem 1rem 0 1rem;
+  font-weight: 500;
+  grid-row: 2 / 3;
+  grid-column: 1 / 2;
+  border-radius: var(--_br) var(--_br) 0 0;
+  box-shadow: 0 1rem 0 #d4d4d4, 0 0 0 1rem #f5f5f5;
+}
+
+.house-price::after {
+  --_size: calc(var(--_br) * 1.5);
+  --_corner-color: #f5f5f5;
+  grid-column: 2 / 3;
+  grid-row: 2 / 3;
+  left: -1rem;
+  bottom: -1rem;
+}
+
+.house-price span {
+  display: grid;
+  place-items: center;
+  background: #d4d4d4;
+  padding: 0.75rem 0;
+  border-radius: calc(var(--_br) / 2);
+}
+
+.house-meta {
+  margin: 0;
+  grid-row: 3 /4;
+  grid-column: 1 / 3;
+  font-size: 1.25rem;
+  line-height: 1.8;
+  padding-top: 1rem;
+  border-radius: 0 var(--_br) var(--_br) var(--_br);
 }

@@ -5,9 +5,9 @@ import { PiCheckCircleLight } from "react-icons/pi";
 
 const HomepageHero = () => {
   return (
-    <section className=" grid grid-cols-12 lg:max-w-5xl xl:max-w-6xl mx-auto">
+    <section className=" grid grid-cols-12 max-w-5xl xl:max-w-6xl mx-auto pt-[116px]">
       <div className="pt-8 text-center px-4 space-y-6 col-span-12 lg:col-span-5 lg:text-left lg:flex lg:flex-col lg:justify-center">
-        <h1 className="z-50 text-7xl tracking-tight font-bold  ">
+        <h1 className=" text-7xl tracking-tight font-bold  ">
           Crypto <span className="font-thin ">Patronite</span>
         </h1>
         <p className="text-muted-foreground text-sm md:w-[50%] mx-auto lg:w-full ">

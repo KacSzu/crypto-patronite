@@ -40,23 +40,24 @@ const HomepageBestArtistsDisplay: React.FC<IHomepageBestArtistsCarousel> = ({
                 <CarouselContent>
                   {artists.map((artist, i) => (
                     <CarouselItem key={i}>
-                      <div
-                        key={i}
-                        className={cn("house-info col-span-6 lg:col-span-4")}
-                      >
-                        <div className="house-image">
-                          <img src="/climber.jpg" alt="" />
+                      <div key={i} className={cn("house-info ")}>
+                        <div className="house-image ">
+                          <img src={artist.image_url as string} alt="" />
                         </div>
 
-                        <div className="house-price bg-neutral-400	">
+                        <div className="house-price bg-[#d4d4d4]	">
                           <span className="uppercase text-sm text-center">
-                            Total earned 500$
+                            Total earned {artist.total_earned}ETH
                           </span>
                         </div>
 
-                        <div className="house-meta bg-neutral-400	  p-4">
-                          <p>{artist.name}</p>
-                          <p>{artist.description}</p>
+                        <div className="house-meta bg-[#d4d4d4]	  p-4">
+                          <p className="text-2xl tracking-tight font-semibold">
+                            {artist.full_name}
+                          </p>
+                          <p className="text-sm">
+                            {artist.description.substring(0, 230)}...
+                          </p>
                         </div>
                       </div>
                     </CarouselItem>
@@ -80,23 +81,28 @@ const HomepageBestArtistsDisplay: React.FC<IHomepageBestArtistsCarousel> = ({
                 <div
                   key={i}
                   className={cn(
-                    "house-info col-span-6 lg:col-span-4",
-                    i == 2 && "col-start-4 lg:col-start-0"
+                    "house-info col-span-6 lg:col-span-4 ",
+                    i === 2 && "col-start-4 lg:col-start-0",
+                    i % 2 === 0 && "scale-95"
                   )}
                 >
-                  <div className="house-image">
-                    <img src="/climber.jpg" alt="" />
+                  <div className="house-image ">
+                    <img src={artist.image_url as string} alt="" />
                   </div>
 
                   <div className="house-price bg-[#d4d4d4]	">
                     <span className="uppercase text-sm text-center">
-                      Total earned 500$
+                      Total earned {artist.total_earned}ETH
                     </span>
                   </div>
 
                   <div className="house-meta bg-[#d4d4d4]	  p-4">
-                    <p>{artist.name}</p>
-                    <p>{artist.description}</p>
+                    <p className="text-2xl tracking-tight font-semibold">
+                      {artist.full_name}
+                    </p>
+                    <p className="text-sm">
+                      {artist.description.substring(0, 230)}...
+                    </p>
                   </div>
                 </div>
               ))}

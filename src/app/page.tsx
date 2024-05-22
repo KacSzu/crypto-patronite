@@ -9,7 +9,7 @@ export default async function Home() {
     <>
       <HomepageHero />
       <HomepageBestArtists />
-      {/* <HomepageCategories /> */}
+      <HomepageCategories />
       <HomepageWhyUs />
       <HomepageContact />
     </>

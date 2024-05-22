@@ -24,7 +24,7 @@ const data = [
 
 const HomepageWhyUs = () => {
   return (
-    <section className="lg:max-w-5xl xl:max-w-6xl mx-auto px-4  ">
+    <section className="max-w-5xl xl:max-w-6xl mx-auto px-4  ">
       <div className="flex justify-center">
         <h2 className="text-6xl font-bold my-12 ">
           Why <span className="font-thin">us</span>

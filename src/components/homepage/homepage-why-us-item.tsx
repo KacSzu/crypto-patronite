@@ -35,20 +35,20 @@ const HomepageWhyUsItem = ({
   return (
     <section
       ref={ref}
-      className={`relative py-[72px] ${index % 2 === 1 && "bg-secondary"}`}
+      className={`relative lg:py-[72px] ${index % 2 === 1 && "bg-secondary"}`}
     >
-      <div className="relative min-h-[250px] grid grid-cols-12 max-w-[880px] mx-auto">
+      <div className="relative min-h-[250px] grid text-center gap-2 lg:text-start lg:gap-0 grid-cols-12 max-w-[880px] mx-auto">
         <div
-          className={`absolute top-[10%] ${
-            index % 2 === 0 ? "right-[10%]" : "left-[10%]"
-          } z-0 translate-x-[-50%] translate-y-[-50%] `}
+          className={`absolute top-[10%] right-[10%] z-0 translate-x-[-50%] translate-y-[-50%] `}
         >
-          <Image
-            src={svgPath as string}
-            alt={title as string}
-            width={200}
-            height={200}
-          />
+          <div className="hidden lg:block">
+            <Image
+              src={svgPath as string}
+              alt={title as string}
+              width={200}
+              height={200}
+            />
+          </div>
         </div>
         <AnimationNumber
           number={number as number}
@@ -57,6 +57,14 @@ const HomepageWhyUsItem = ({
         />
         <div className="col-span-8 grid grid-cols-12 col-start-3 relative z-20">
           <div className="col-span-12">
+            <div className="lg:hidden flex justify-center">
+              <Image
+                src={svgPath as string}
+                alt={title as string}
+                width={200}
+                height={200}
+              />
+            </div>
             <h2 className="text-3xl text-primary font-semibold">{title}</h2>
           </div>
           <div className="col-span-12">

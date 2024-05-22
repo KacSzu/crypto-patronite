@@ -46,15 +46,14 @@ const HomepageContact = () => {
   function onSubmit(data: z.infer<typeof FormSchema>) {}
 
   return (
-    <section className="py-20 px-8 max-w-6xl mx-auto">
-      <h2 className="text-6xl font-bold my-12">
-        {" "}
+    <section className="px-4 py-28 max-w-6xl mx-auto">
+      <h2 className="text-6xl font-bold my-12 text-center lg:text-end">
         Contact <span className="font-thin">us</span>
       </h2>
       <div className="grid gap-4 grid-cols-12">
         <div className="hidden lg:block lg:col-span-6 relative h-[587px]">
           <Image
-            className="rounded-xl"
+            className="rounded-2xl shadow-xl"
             src="/art.jpg"
             fill
             alt="Window image"
@@ -62,7 +61,10 @@ const HomepageContact = () => {
         </div>
         <div className="col-span-12 lg:col-span-6">
           <Form {...form}>
-            <form onSubmit={form.handleSubmit(onSubmit)} className=" space-y-6">
+            <form
+              onSubmit={form.handleSubmit(onSubmit)}
+              className=" space-y-6 w-full sm:max-w-[350px] lg:max-w-[500px] mx-auto"
+            >
               <FormField
                 control={form.control}
                 name="email"
@@ -70,7 +72,7 @@ const HomepageContact = () => {
                   <FormItem className="flex flex-col   justify-center">
                     <FormControl>
                       <input
-                        className="border-b border-black/50 placeholder:text-lg font-thin p-2 w-full sm:w-[500px] bg-muted"
+                        className="border-b border-black/50 placeholder:text-lg font-thin p-2 w-full  bg-muted"
                         placeholder="E-mail"
                         {...field}
                       />
@@ -87,8 +89,8 @@ const HomepageContact = () => {
                   <FormItem className="flex flex-col   justify-center">
                     <FormControl>
                       <input
-                        className="border-b border-black/50 placeholder:text-lg font-thin p-2 w-full sm:w-[500px] bg-muted"
-                        placeholder="Numer telefonu"
+                        className="border-b border-black/50 placeholder:text-lg font-thin p-2 w-full bg-muted"
+                        placeholder="Phone number"
                         {...field}
                       />
                     </FormControl>
@@ -104,8 +106,8 @@ const HomepageContact = () => {
                   <FormItem className="flex flex-col   justify-center">
                     <FormControl>
                       <textarea
-                        className="border-b border-black/50 placeholder:text-lg font-thin p-2 w-full sm:w-[500px] bg-muted"
-                        placeholder="Opisz nam swój problem..."
+                        className="border-b border-black/50 placeholder:text-lg font-thin p-2 w-full bg-muted"
+                        placeholder="What's your problem ? ..."
                         {...field}
                       />
                     </FormControl>
@@ -120,7 +122,7 @@ const HomepageContact = () => {
                 render={({ field }) => (
                   <FormItem className="flex flex-col items-center justify-center">
                     <FormControl>
-                      <label className=" w-64 h-64 border-2 p-5 border-dashed border-gray-400 rounded-md cursor-pointer flex flex-col justify-center items-center hover:bg-gray-100 text-gray-400 sm:w-[500px]">
+                      <label className=" w-64 h-64 border-2 p-5 border-dashed border-gray-400 rounded-md cursor-pointer flex flex-col justify-center items-center hover:bg-gray-100 text-gray-400 lg:w-[500px] ">
                         {fileName ? (
                           <span className="text-center text-lg font-thin">
                             {fileName}
@@ -150,7 +152,7 @@ const HomepageContact = () => {
                         />
                       </label>
                     </FormControl>
-                    <FormDescription className="text-muted-foreground sm:w-[500px]">
+                    <FormDescription className="text-muted-foreground">
                       Plik musi być w formacie jpg, png, jpeg, webp lub pdf.
                       Załączony plik nie może być większy niż 10MB.
                     </FormDescription>
@@ -159,7 +161,7 @@ const HomepageContact = () => {
                 )}
               />
               <div className=" flex justify-center">
-                <Button className="w-full sm:w-[500px] " type="submit">
+                <Button className="w-full  " type="submit">
                   Send
                 </Button>
               </div>

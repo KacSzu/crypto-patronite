@@ -1,12 +1,12 @@
 import PayButton from "@/components/buttons/pay-button";
 import { supabase } from "@/lib/supabase";
-interface IInfluencerProfilePage {
+interface IArtistPage {
   params: {
     id: string;
   };
 }
 
-async function InfluencerProfilePage({ params }: IInfluencerProfilePage) {
+async function ArtistPage({ params }: IArtistPage) {
   const data = await supabase.from("artists").select("*").eq("id", params.id);
   const artist = data?.data?.[0];
   if (!artist) return null;
@@ -18,4 +18,4 @@ async function InfluencerProfilePage({ params }: IInfluencerProfilePage) {
   );
 }
 
-export default InfluencerProfilePage;
+export default ArtistPage;

@@ -74,13 +74,15 @@
     @apply bg-background text-foreground;
   }
 }
-
+.text-shadow {
+  text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.7);
+}
 .house-info {
   --_br: 1rem;
   display: grid;
   gap: 1rem;
   grid-template-columns: repeat(2, 1fr);
-  grid-template-rows: 0.7fr auto 0.4fr;
+  grid-template-rows: 0.96fr 0.1fr 0.4fr;
   max-width: 25rem;
   position: relative;
 }
@@ -151,7 +153,7 @@
 .house-price span {
   display: grid;
   place-items: center;
-  background: #d4d4d4;
+  background: #f5f5f5;
   padding: 0.75rem 0;
   border-radius: calc(var(--_br) / 2);
 }

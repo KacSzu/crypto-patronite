@@ -26,7 +26,7 @@ const AnimationNumber: React.FC<AnimationNumberProps> = ({
         index % 2 === 0
           ? "left-0 -translate-x-[26px] translate-y-10"
           : "right-0 translate-x-8 top-[52px]"
-      } hidden lg:block absolute z-50 `}
+      } hidden lg:block absolute z-20 `}
     >
       <motion.div
         style={{ scale, backgroundColor }}

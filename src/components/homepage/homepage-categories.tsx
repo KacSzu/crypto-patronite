@@ -33,7 +33,7 @@ const HomepageCategories = () => {
   const [activeIndex, setActiveIndex] = useState(0);
 
   return (
-    <section className="py-12 px-8 max-w-6xl mx-auto">
+    <section className="hidden lg:block py-12 px-8 max-w-6xl mx-auto">
       <h2 className="text-6xl font-bold my-12">Categories</h2>
       <div className="flex flex-wrap -mx-2">
         {categories.map((item, i) => (
@@ -41,7 +41,7 @@ const HomepageCategories = () => {
             key={i}
             onMouseEnter={() => setActiveIndex(i)}
             onMouseLeave={() => setActiveIndex(0)}
-            className={`transition-all duration-700 ease-in-out border rounded-xl flex flex-col justify-end p-4 h-[500px] mx-2 ${
+            className={`transition-all duration-700 ease-in-out border rounded-xl shadow-xl flex flex-col justify-end p-4 h-[500px] mx-2 ${
               activeIndex === i ? "w-2/5" : "w-1/6"
             }`}
             style={{
@@ -54,14 +54,14 @@ const HomepageCategories = () => {
           >
             <div
               className={cn(
-                "opacity-0 transition-all ease-in-out duration-500",
+                "opacity-0 transition-all ease-in-out duration-500 text-shadow",
                 activeIndex === i && "opacity-100"
               )}
             >
-              <h3 className="text-5xl font-bold  text-white  text-shadow">
+              <h3 className="text-5xl font-bold  text-white  text-shadow truncate">
                 {item.title}
               </h3>
-              <p className=" text-white">{item.description}</p>
+              <p className=" text-white ">{item.description}</p>
             </div>
           </div>
         ))}

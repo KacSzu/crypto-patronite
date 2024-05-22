@@ -1,12 +1,15 @@
 import { supabase } from "@/lib/supabase";
 import HomepageBestArtistsDisplay from "./homepage-best-artists-display";
-import Image from "next/image";
+import AnimatedButton from "../buttons/animated-button";
+import Link from "next/link";
 
 export const getArtists = async () => {
   try {
     const { data, error } = await supabase
       .from("artists")
-      .select("name,description,youtubeChannel,id");
+      .select(
+        "full_name,description,id,total_earned,image_url,wallet,artist_type"
+      );
     console.log(data);
     if (error) {
       throw new Error(error.message);
@@ -26,24 +29,32 @@ const HomepageBestArtists = async () => {
   }
 
   return (
-    <section className="lg:max-w-5xl xl:max-w-6xl mx-auto px-4">
+    <section className="max-w-5xl xl:max-w-6xl mx-auto px-4">
       <div className="flex items-center space-x-4  justify-center my-12">
         <div className="space-y-3">
-          <div className="flex gap-4 max-h-[70px] items-center  ">
-            <Image
-              src="/trap.jpg"
+          <div className="flex gap-4 h-[70px] items-center justify-center  ">
+            <img
+              src="/12.jpg"
               alt="Our team"
-              width={130}
-              height={70}
-              className="rounded-full hidden md:block"
+              width={150}
+              className="rounded-full hidden md:block shadow-xl   "
             />
-            <h2 className="text-6xl xl:text-7xl font-bold tracking-tight  px-2">
+            <h2 className="text-6xl xl:text-7xl font-bold tracking-tight text-center  ">
               Check <span className="font-thin ">our</span>
             </h2>
           </div>
-          <h2 className="text-6xl xl:text-7xl font-bold tracking-tight   text-center">
-            best <span className="font-thin">artists</span>
-          </h2>
+          <div className=" flex gap-8 items-center">
+            <h2 className="text-6xl xl:text-7xl font-bold tracking-tight   text-center">
+              best <span className="font-thin">artists</span>
+            </h2>
+            <Link className="hidden md:block" href={"/artists"}>
+              <AnimatedButton backgroundColor="#be123c">
+                <span className="uppercase font-semibold text-sm">
+                  More artists
+                </span>
+              </AnimatedButton>
+            </Link>
+          </div>
         </div>
       </div>
       {data && data.length > 0 ? (

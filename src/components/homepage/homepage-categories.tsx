@@ -1,6 +1,7 @@
 "use client";
 import { cn } from "@/lib/utils";
-import React, { useState } from "react";
+import React, { useState, useCallback } from "react";
+import Image from "next/image";
 
 const categories = [
   {
@@ -30,7 +31,15 @@ const categories = [
 ];
 
 const HomepageCategories = () => {
-  const [activeIndex, setActiveIndex] = useState(0);
+  const [activeIndex, setActiveIndex] = useState<number>(0);
+
+  const handleMouseEnter = useCallback((index: any) => {
+    setActiveIndex(index);
+  }, []);
+
+  const handleMouseLeave = useCallback(() => {
+    setActiveIndex(0);
+  }, []);
 
   return (
     <section className="hidden lg:block py-12 px-8 max-w-6xl mx-auto">
@@ -39,22 +48,29 @@ const HomepageCategories = () => {
         {categories.map((item, i) => (
           <div
             key={i}
-            onMouseEnter={() => setActiveIndex(i)}
-            onMouseLeave={() => setActiveIndex(0)}
-            className={`transition-all duration-700 ease-in-out border rounded-xl shadow-xl flex flex-col justify-end p-4 h-[500px] mx-2 ${
+            onMouseEnter={() => handleMouseEnter(i)}
+            onMouseLeave={handleMouseLeave}
+            className={`transition-all duration-500 ease-in-out border rounded-xl shadow-xl flex flex-col justify-end p-4 h-[500px] mx-2 relative ${
               activeIndex === i ? "w-2/5" : "w-1/6"
             }`}
             style={{
-              backgroundImage: `url(${item.imageSrc})`,
               backgroundSize: "cover",
               backgroundPosition: "center",
-              backgroundRepeat: "no-repeat",
               flex: "1 0 auto",
+              willChange: "width, opacity",
             }}
           >
+            <Image
+              src={item.imageSrc}
+              alt={item.title}
+              layout="fill"
+              objectFit="cover"
+              quality={75}
+              className="rounded-xl"
+            />
             <div
               className={cn(
-                "opacity-0 transition-all ease-in-out duration-500 text-shadow",
+                "opacity-0  text-shadow transition-opacity duration-500 z-30",
                 activeIndex === i && "opacity-100"
               )}
             >

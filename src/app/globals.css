@@ -66,6 +66,12 @@
   }
 }
 
+html,
+* {
+  scroll-behavior: smooth;
+  scroll-padding: 116px;
+}
+
 @layer base {
   * {
     @apply border-border;

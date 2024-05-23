@@ -4,7 +4,6 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
 import { HiArrowUpTray } from "react-icons/hi2";
-
 import { Button } from "@/components/ui/button";
 import {
   Form,
@@ -20,13 +19,13 @@ import { useState } from "react";
 
 const FormSchema = z.object({
   email: z.string().min(2, {
-    message: "E-mail jest wymagany.",
+    message: "E-mail is required",
   }),
   phone_number: z.string().min(9, {
-    message: "Niepoprawny numer telefonu",
+    message: "Phone number is required",
   }),
   message: z.string().min(1, {
-    message: "Wiadomość jest wymagana",
+    message: "Message is required",
   }),
   file: z.instanceof(File).optional(),
 });
@@ -72,7 +71,7 @@ const HomepageContact = () => {
                   <FormItem className="flex flex-col   justify-center">
                     <FormControl>
                       <input
-                        className="border-b border-black/50 placeholder:text-lg font-thin p-2 w-full  bg-muted"
+                        className="border-b border-black/50 placeholder:text-lg font-thin p-2 w-full  bg-muted cursor-not-allowed"
                         placeholder="E-mail"
                         {...field}
                       />
@@ -89,7 +88,7 @@ const HomepageContact = () => {
                   <FormItem className="flex flex-col   justify-center">
                     <FormControl>
                       <input
-                        className="border-b border-black/50 placeholder:text-lg font-thin p-2 w-full bg-muted"
+                        className="border-b border-black/50 placeholder:text-lg font-thin p-2 w-full bg-muted cursor-not-allowed"
                         placeholder="Phone number"
                         {...field}
                       />
@@ -106,8 +105,8 @@ const HomepageContact = () => {
                   <FormItem className="flex flex-col   justify-center">
                     <FormControl>
                       <textarea
-                        className="border-b border-black/50 placeholder:text-lg font-thin p-2 w-full bg-muted"
-                        placeholder="What's your problem ? ..."
+                        className="border-b border-black/50 placeholder:text-lg font-thin p-2 w-full bg-muted cursor-not-allowed"
+                        placeholder="What's your problem ? "
                         {...field}
                       />
                     </FormControl>
@@ -122,7 +121,7 @@ const HomepageContact = () => {
                 render={({ field }) => (
                   <FormItem className="flex flex-col items-center justify-center">
                     <FormControl>
-                      <label className=" w-64 h-64 border-2 p-5 border-dashed border-gray-400 rounded-md cursor-pointer flex flex-col justify-center items-center hover:bg-gray-100 text-gray-400 lg:w-[500px] ">
+                      <label className=" w-64 h-64 border-2 p-5 border-dashed border-gray-400 rounded-md  flex flex-col justify-center items-center hover:bg-gray-100 text-gray-400 lg:w-[500px] cursor-not-allowed">
                         {fileName ? (
                           <span className="text-center text-lg font-thin">
                             {fileName}
@@ -133,11 +132,12 @@ const HomepageContact = () => {
                               <HiArrowUpTray />
                             </span>
                             <span className="text-lg font-thin">
-                              Dodaj zdjęcia lub projekt jeśli posiadasz.
+                              Add images if necessary
                             </span>
                           </span>
                         )}
                         <input
+                          disabled
                           type="file"
                           accept=".jpg,.png,.jpeg,.webp,.pdf"
                           ref={field.ref}
@@ -148,20 +148,24 @@ const HomepageContact = () => {
                               setFileName(file.name);
                             }
                           }}
-                          className="hidden"
+                          className="hidden cursor-not-allowed"
                         />
                       </label>
                     </FormControl>
                     <FormDescription className="text-muted-foreground">
-                      Plik musi być w formacie jpg, png, jpeg, webp lub pdf.
-                      Załączony plik nie może być większy niż 10MB.
+                      File has to be jpg, png, jpeg, webp lub pdf. Attached file
+                      can&apos;t be bigger than 10MB.
                     </FormDescription>
                     <FormMessage />
                   </FormItem>
                 )}
               />
               <div className=" flex justify-center">
-                <Button className="w-full  " type="submit">
+                <Button
+                  disabled
+                  className="w-full disabled:cursor-not-allowed "
+                  type="submit"
+                >
                   Send
                 </Button>
               </div>

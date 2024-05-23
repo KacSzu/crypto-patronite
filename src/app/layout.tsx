@@ -4,6 +4,7 @@ import "./globals.css";
 import { cn } from "@/lib/utils";
 import Header from "@/components/header/header";
 import Footer from "@/components/footer/footer";
+import { Toaster } from "react-hot-toast";
 const poppins = Poppins({
   subsets: ["latin"],
   display: "swap",
@@ -27,6 +28,7 @@ export default function RootLayout({
         <Header />
         <main className="pt-[150px] lg:pt-[120px] ">{children}</main>
         <Footer />
+        <Toaster position="top-center" />
       </body>
     </html>
   );

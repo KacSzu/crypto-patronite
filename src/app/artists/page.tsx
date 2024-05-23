@@ -9,9 +9,8 @@ async function ArtistsPage() {
     console.error(error);
     return <p>Error loading artists</p>;
   }
-  console.log(data);
   return (
-    <section className="  ">
+    <section>
       <header className="grid grid-cols-12 mt-12 max-w-5xl xl:max-w-6xl mx-auto">
         <div className="lg:col-span-5 col-span-12 flex justify-center">
           <Image
@@ -21,11 +20,11 @@ async function ArtistsPage() {
             alt="robot image"
           />
         </div>
-        <div className="lg:col-span-7 col-span-12  ">
-          <h2 className="text-6xl xl:text-7xl font-bold tracking-tight text-center ">
+        <div className="lg:col-span-7 col-span-12 flex flex-col justify-center items-center  text-center ">
+          <h2 className="text-6xl xl:text-7xl font-bold tracking-tight ">
             Meet <span className=" font-thin">our</span>
           </h2>
-          <h2 className="text-6xl xl:text-7xl font-bold tracking-tight  text-center ">
+          <h2 className="text-6xl xl:text-7xl font-bold tracking-tight   ">
             talented <span className="font-thin">members</span>
           </h2>
         </div>

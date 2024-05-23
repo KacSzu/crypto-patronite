@@ -29,7 +29,7 @@ const HomepageBestArtists = async () => {
   }
 
   return (
-    <section className="max-w-5xl xl:max-w-6xl mx-auto px-4">
+    <section id="best_artists" className="max-w-5xl xl:max-w-6xl mx-auto px-4">
       <div className="flex items-center space-x-4  justify-center my-12">
         <div className="space-y-3">
           <div className="flex gap-4 h-[70px] items-center justify-center  ">

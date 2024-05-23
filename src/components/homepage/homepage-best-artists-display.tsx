@@ -10,6 +10,7 @@ import { Artist } from "../../../types/supabase";
 import { useIsMobile } from "@/hooks/use-is-mobile";
 import { cn } from "@/lib/utils";
 import Image from "next/image";
+import Link from "next/link";
 
 interface IHomepageBestArtistsCarousel {
   artists: Artist[];
@@ -41,26 +42,28 @@ const HomepageBestArtistsDisplay: React.FC<IHomepageBestArtistsCarousel> = ({
                 <CarouselContent>
                   {artists.map((artist, i) => (
                     <CarouselItem key={i}>
-                      <div key={i} className={cn("house-info ")}>
-                        <div className="house-image ">
-                          <img src={artist.image_url as string} alt="" />
-                        </div>
+                      <Link href={`/artists/${artist.id}`}>
+                        <div key={i} className={cn("house-info ")}>
+                          <div className="house-image ">
+                            <img src={artist.image_url as string} alt="" />
+                          </div>
 
-                        <div className="house-price bg-[#d4d4d4]	">
-                          <span className="uppercase text-sm text-center">
-                            Total earned {artist.total_earned}ETH
-                          </span>
-                        </div>
+                          <div className="house-price bg-[#d4d4d4]	">
+                            <span className="uppercase text-sm text-center">
+                              Total earned {artist.total_earned}ETH
+                            </span>
+                          </div>
 
-                        <div className="house-meta bg-[#d4d4d4]	  p-4">
-                          <p className="text-2xl tracking-tight font-semibold">
-                            {artist.full_name}
-                          </p>
-                          <p className="text-sm">
-                            {artist.description.substring(0, 230)}...
-                          </p>
+                          <div className="house-meta bg-[#d4d4d4]	  p-4">
+                            <p className="text-2xl tracking-tight font-semibold">
+                              {artist.full_name}
+                            </p>
+                            <p className="text-sm">
+                              {artist.description.substring(0, 230)}...
+                            </p>
+                          </div>
                         </div>
-                      </div>
+                      </Link>
                     </CarouselItem>
                   ))}
                 </CarouselContent>
@@ -79,7 +82,8 @@ const HomepageBestArtistsDisplay: React.FC<IHomepageBestArtistsCarousel> = ({
           ) : (
             <div className="grid grid-cols-12 gap-4 px-2 justify-center  justify-items-center">
               {artists.map((artist, i) => (
-                <div
+                <Link
+                  href={`/artists/${artist.id}`}
                   key={i}
                   className={cn(
                     "house-info col-span-6 lg:col-span-4 ",
@@ -110,7 +114,7 @@ const HomepageBestArtistsDisplay: React.FC<IHomepageBestArtistsCarousel> = ({
                       {artist.description.substring(0, 230)}...
                     </p>
                   </div>
-                </div>
+                </Link>
               ))}
             </div>
           )}

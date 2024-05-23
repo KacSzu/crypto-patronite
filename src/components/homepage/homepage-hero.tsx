@@ -1,5 +1,7 @@
-import { Button } from "@/components/ui/button";
+import { Button, buttonVariants } from "@/components/ui/button";
+import { cn } from "@/lib/utils";
 import Image from "next/image";
+import Link from "next/link";
 import { CiHeart } from "react-icons/ci";
 import { PiCheckCircleLight } from "react-icons/pi";
 
@@ -15,21 +17,30 @@ const HomepageHero = () => {
           support your favorite creators and projects using cryptocurrency.
         </p>
         <div className="flex flex-col lg:flex-row gap-2 items-center  justify-center lg:justify-start">
-          <Button className="text-base bg-red-200 border-red-300 border hover:bg-red-300 text-black  w-[150px] space-x-3">
+          <Link
+            href="/artists"
+            className={cn(
+              buttonVariants({ variant: "default" }),
+              "text-base bg-red-200 border-red-300 border hover:bg-red-300 text-black  w-[150px] space-x-3"
+            )}
+          >
             <span className="text-xl">
               <CiHeart />
             </span>
             <span>Support now</span>
-          </Button>
-          <Button
-            variant="ghost"
-            className="text-base  text-black border  w-[150px] space-x-3  "
+          </Link>
+          <Link
+            href={"/#best_artists"}
+            className={cn(
+              buttonVariants({ variant: "ghost" }),
+              "text-base  text-black border  w-[150px] space-x-3  "
+            )}
           >
             <span className="text-xl">
               <PiCheckCircleLight />
             </span>
             <span> See more</span>
-          </Button>
+          </Link>
         </div>
       </div>
       <div className="col-span-12 flex items-end justify-center h-[500px] lg:h-[500px] lg:col-span-7">

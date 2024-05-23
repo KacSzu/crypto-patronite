@@ -153,7 +153,7 @@ const HomepageContact = () => {
                       </label>
                     </FormControl>
                     <FormDescription className="text-muted-foreground">
-                      File has to be jpg, png, jpeg, webp lub pdf. Attached file
+                      File has to be jpg, png, jpeg, webp or pdf. Attached file
                       can&apos;t be bigger than 10MB.
                     </FormDescription>
                     <FormMessage />

@@ -21,6 +21,7 @@ export default function ArtistsDisplay({ artists }: IArtistsDisplay) {
           itemSelector: ".grid-item",
           layoutMode: "fitRows",
         });
+        isotopeRef.current.layout();
       }
     };
 
@@ -59,7 +60,7 @@ export default function ArtistsDisplay({ artists }: IArtistsDisplay) {
         )}
       </div>
 
-      <div ref={containerRef} className="flex justify-center ">
+      <div ref={containerRef} className="flex justify-center h-screen ">
         {artists.map(
           (
             { artist_type, full_name, description, id, image_url, wallet },
@@ -67,7 +68,7 @@ export default function ArtistsDisplay({ artists }: IArtistsDisplay) {
           ) => (
             <div
               key={index}
-              className={`w-full md:w-1/2 lg:w-1/3 p-1 ${artist_type} grid-item `}
+              className={`w-full md:w-1/2 lg:w-1/3 p-1 ${artist_type} grid-item  `}
             >
               <Link href={`/artists/${id}`}>
                 <div className="relative group cursor-pointer overflow-hidden">
@@ -78,6 +79,11 @@ export default function ArtistsDisplay({ artists }: IArtistsDisplay) {
                     alt="Gallery item"
                     layout="responsive"
                     objectFit="cover"
+                    onLoadingComplete={() => {
+                      if (isotopeRef.current) {
+                        isotopeRef.current.layout();
+                      }
+                    }}
                   />
                   <div className="absolute inset-0 flex flex-col justify-center items-center text-white opacity-0 hover:opacity-100 transition-opacity duration-500 ease-in-out bg-black bg-opacity-70">
                     <p className="text-2xl font-normal pb-4 transform translate-y-8 group-hover:translate-y-0 transition-transform duration-700">

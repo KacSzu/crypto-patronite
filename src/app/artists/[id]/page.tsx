@@ -44,13 +44,17 @@ async function ArtistPage({ params }: IArtistPage) {
           </div>
           <div className="space-y-2">
             <PayButton toWallet={wallet} />
-            <p className="uppercase text-xs tracking-tight text-red-700    font-semibold">
-              Base transaction value is 0.0001 ether
-            </p>
-            <p className="text-xs uppercase tracking-tight text-red-700 font-semibold ">
-              Please do not complete the transactions. The artists are creations
-              of AI and the connected wallets are mine!
-            </p>
+            <div className="uppercase text-xs tracking-tight text-red-700    font-semibold space-y-1">
+              <p>Base transaction value is 0.0001 ether</p>
+              <p>
+                Make sure you have at least 0.0001 ether, otherwise transation
+                will be failed
+              </p>
+              <p>
+                Please do not complete the transactions. The artists are
+                creations of AI and the connected wallets are mine!
+              </p>
+            </div>
           </div>
         </div>
       </div>

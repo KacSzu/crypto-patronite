@@ -1,7 +1,23 @@
 import ArtistsDisplay from "@/components/artists/artists-display";
-import { getArtists } from "@/lib/get-artists";
+import { supabase } from "@/lib/supabase";
 import Image from "next/image";
-import { Suspense } from "react";
+
+const getArtists = async () => {
+  try {
+    const { data, error } = await supabase
+      .from("artists")
+      .select(
+        "full_name,description,id,total_earned,image_url,wallet,artist_type"
+      );
+    if (error) {
+      throw new Error(error.message);
+    }
+    return { data, error: null };
+  } catch (e: any) {
+    console.error(e);
+    return { data: null, error: e.message };
+  }
+};
 
 async function ArtistsPage() {
   const { data, error } = await getArtists();
@@ -29,6 +45,7 @@ async function ArtistsPage() {
           </h2>
         </div>
       </header>
+
       <ArtistsDisplay artists={data} />
     </section>
   );

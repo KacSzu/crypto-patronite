@@ -1,5 +1,4 @@
 import Link from "next/link";
-import { buttonVariants } from "../ui/button";
 
 export default function FooterContent() {
   return (
@@ -13,6 +12,7 @@ export default function FooterContent() {
             target="_blank"
             href={"https://github.com/KacSzu/crypto-patronite"}
           >
+            {" "}
             repo
           </Link>
         </h1>

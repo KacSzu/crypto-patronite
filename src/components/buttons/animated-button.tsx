@@ -45,7 +45,7 @@ export default function AnimatedButton({
   return (
     <Magnetic>
       <div
-        className={`relative flex items-center justify-center cursor-pointer border-[1.5px] border-neutral-400 hover:text-[#fff] hover:border-[${backgroundColor}] rounded-full px-12 py-6 overflow-hidden transition-colors transition-border-color duration-300 ease-in-out`}
+        className={`relative flex items-center justify-center cursor-pointer shadow-xl border-[1.5px] border-neutral-400 hover:text-[#fff] hover:border-[${backgroundColor}] rounded-full px-12 py-6 overflow-hidden transition-colors transition-border-color duration-300 ease-in-out`}
         onMouseEnter={manageMouseEnter}
         onMouseLeave={manageMouseLeave}
         {...attributes}

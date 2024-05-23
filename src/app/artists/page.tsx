@@ -1,12 +1,19 @@
 import ArtistsDisplay from "@/components/artists/artists-display";
+import { getArtists } from "@/lib/get-artists";
 import Image from "next/image";
-import React from "react";
+import { Suspense } from "react";
 
-function ArtistsPage() {
+async function ArtistsPage() {
+  const { data, error } = await getArtists();
+  if (error || !data) {
+    console.error(error);
+    return <p>Error loading artists</p>;
+  }
+  console.log(data);
   return (
-    <section>
-      <header className="grid grid-cols-12 max-w-5xl xl:max-w-6xl mx-auto mt-12">
-        <div className="col-span-5">
+    <section className="  ">
+      <header className="grid grid-cols-12 mt-12 max-w-5xl xl:max-w-6xl mx-auto">
+        <div className="lg:col-span-5 col-span-12 flex justify-center">
           <Image
             src="/hero-robot.png"
             width={350}
@@ -14,16 +21,16 @@ function ArtistsPage() {
             alt="robot image"
           />
         </div>
-        <div className="col-span-7">
-          <h2 className="text-5xl lg:text-6xl xl:text-7xl font-semibold lg:font-bold tracking-tight pt-4 px-2">
-            Meet <span className=" lg:font-thin">our</span>
+        <div className="lg:col-span-7 col-span-12  ">
+          <h2 className="text-6xl xl:text-7xl font-bold tracking-tight text-center ">
+            Meet <span className=" font-thin">our</span>
           </h2>
-          <h2 className="text-5xl lg:text-6xl xl:text-7xl  font-semibold lg:font-bold tracking-tight lg:pt-4 px-2">
-            talented <span className="lg:font-thin">members</span>
+          <h2 className="text-6xl xl:text-7xl font-bold tracking-tight  text-center ">
+            talented <span className="font-thin">members</span>
           </h2>
         </div>
       </header>
-      <ArtistsDisplay />
+      <ArtistsDisplay artists={data} />
     </section>
   );
 }

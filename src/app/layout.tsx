@@ -25,7 +25,7 @@ export default function RootLayout({
     <html lang="en">
       <body className={cn(poppins.variable, "antialiased bg-muted ")}>
         <Header />
-        <main>{children}</main>
+        <main className="pt-[150px] lg:pt-[120px] ">{children}</main>
         <Footer />
       </body>
     </html>

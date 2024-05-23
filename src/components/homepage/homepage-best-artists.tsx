@@ -3,14 +3,14 @@ import HomepageBestArtistsDisplay from "./homepage-best-artists-display";
 import AnimatedButton from "../buttons/animated-button";
 import Link from "next/link";
 
-export const getArtists = async () => {
+export const getBestArtists = async () => {
   try {
     const { data, error } = await supabase
       .from("artists")
       .select(
         "full_name,description,id,total_earned,image_url,wallet,artist_type"
-      );
-    console.log(data);
+      )
+      .range(0, 2);
     if (error) {
       throw new Error(error.message);
     }
@@ -22,8 +22,8 @@ export const getArtists = async () => {
 };
 
 const HomepageBestArtists = async () => {
-  const { data, error } = await getArtists();
-  if (error) {
+  const { data, error } = await getBestArtists();
+  if (error || !data || data.length < 1) {
     console.error(error);
     return <p>Error loading artists</p>;
   }
@@ -40,14 +40,14 @@ const HomepageBestArtists = async () => {
               className="rounded-full hidden md:block shadow-xl   "
             />
             <h2 className="text-6xl xl:text-7xl font-bold tracking-tight text-center  ">
-              Check <span className="font-thin ">our</span>
+              Meet <span className="font-thin ">our</span>
             </h2>
           </div>
           <div className=" flex gap-8 items-center">
             <h2 className="text-6xl xl:text-7xl font-bold tracking-tight   text-center">
               best <span className="font-thin">artists</span>
             </h2>
-            <Link className="hidden md:block" href={"/artists"}>
+            <Link className="hidden md:block " href={"/artists"}>
               <AnimatedButton backgroundColor="#be123c">
                 <span className="uppercase font-semibold text-sm">
                   More artists

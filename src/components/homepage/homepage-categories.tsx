@@ -1,9 +1,14 @@
 "use client";
-import { cn } from "@/lib/utils";
 import React, { useState, useCallback } from "react";
-import Image from "next/image";
+import HomepageCategoryCard from "./homepage-category-card";
 
-const categories = [
+export interface Category {
+  title: string;
+  description: string;
+  imageSrc: string;
+}
+
+const categories: Category[] = [
   {
     title: "Painter",
     description:
@@ -30,10 +35,10 @@ const categories = [
   },
 ];
 
-const HomepageCategories = () => {
+const HomepageCategories: React.FC = () => {
   const [activeIndex, setActiveIndex] = useState<number>(0);
 
-  const handleMouseEnter = useCallback((index: any) => {
+  const handleMouseEnter = useCallback((index: number) => {
     setActiveIndex(index);
   }, []);
 
@@ -45,41 +50,14 @@ const HomepageCategories = () => {
     <section className="hidden lg:block py-12 px-8 max-w-6xl mx-auto">
       <h2 className="text-6xl font-bold my-12">Categories</h2>
       <div className="flex flex-wrap -mx-2">
-        {categories.map((item, i) => (
-          <div
-            key={i}
-            onMouseEnter={() => handleMouseEnter(i)}
+        {categories.map((item, index) => (
+          <HomepageCategoryCard
+            key={index}
+            item={item}
+            isActive={activeIndex === index}
+            onMouseEnter={() => handleMouseEnter(index)}
             onMouseLeave={handleMouseLeave}
-            className={`transition-all duration-500 ease-in-out border rounded-xl shadow-xl flex flex-col justify-end p-4 h-[500px] mx-2 relative ${
-              activeIndex === i ? "w-2/5" : "w-1/6"
-            }`}
-            style={{
-              backgroundSize: "cover",
-              backgroundPosition: "center",
-              flex: "1 0 auto",
-              willChange: "width, opacity",
-            }}
-          >
-            <Image
-              src={item.imageSrc}
-              alt={item.title}
-              layout="fill"
-              objectFit="cover"
-              quality={75}
-              className="rounded-xl"
-            />
-            <div
-              className={cn(
-                "opacity-0  text-shadow transition-opacity duration-500 z-30",
-                activeIndex === i && "opacity-100"
-              )}
-            >
-              <h3 className="text-5xl font-bold  text-white  text-shadow truncate">
-                {item.title}
-              </h3>
-              <p className=" text-white ">{item.description}</p>
-            </div>
-          </div>
+          />
         ))}
       </div>
     </section>
